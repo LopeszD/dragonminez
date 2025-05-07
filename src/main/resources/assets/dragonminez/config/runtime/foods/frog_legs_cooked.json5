@@ -1,0 +1,13 @@
+{
+  // Item ID for Cooked Frog Legs
+  "itemID": "dragonminez:frog_legs_cooked",
+
+  // Health Regeneration for Cooked Frog Legs (Min: 0.0 / Max: 1.0 / Default: 0.07)
+  "healthRegen": 0.07,
+
+  // Ki Regeneration for Cooked Frog Legs (Min: 0.0 / Max: 1.0 / Default: 0.04)
+  "kiRegen": 0.04,
+
+  // Stamina Regeneration for Cooked Frog Legs (Min: 0.0 / Max: 1.0 / Default: 0.04)
+  "staminaRegen": 0.04
+}

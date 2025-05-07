@@ -1,0 +1,13 @@
+{
+  // Item ID for Raw Dino Meat
+  "itemID": "dragonminez:raw_dino_meat",
+
+  // Health Regeneration for Raw Dino Meat (Min: 0.0 / Max: 1.0 / Default: 0.04)
+  "healthRegen": 0.04,
+
+  // Ki Regeneration for Raw Dino Meat (Min: 0.0 / Max: 1.0 / Default: 0.02)
+  "kiRegen": 0.02,
+
+  // Stamina Regeneration for Raw Dino Meat (Min: 0.0 / Max: 1.0 / Default: 0.02)
+  "staminaRegen": 0.02
+}

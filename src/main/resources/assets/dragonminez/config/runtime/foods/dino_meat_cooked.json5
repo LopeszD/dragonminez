@@ -1,0 +1,13 @@
+{
+  // Item ID for Cooked Dino Meat
+  "itemID": "dragonminez:cooked_dino_meat",
+
+  // Health Regeneration for Cooked Dino Meat (Min: 0.0 / Max: 1.0 / Default: 0.1)
+  "healthRegen": 0.1,
+
+  // Ki Regeneration for Cooked Dino Meat (Min: 0.0 / Max: 1.0 / Default: 0.075)
+  "kiRegen": 0.075,
+
+  // Stamina Regeneration for Cooked Dino Meat (Min: 0.0 / Max: 1.0 / Default: 0.075)
+  "staminaRegen": 0.075
+}

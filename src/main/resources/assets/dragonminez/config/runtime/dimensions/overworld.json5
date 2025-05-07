@@ -1,0 +1,34 @@
+{
+  // Dimension ID
+  "dimensionID": "minecraft:overworld",
+
+  "training": {
+    // Multiplier for ZPoints gained by hitting an entity (Min: 1.0 / Max: 20.0 / Default: 1.0)
+    "hitMultiplier": 1.0,
+
+    // Multiplier for ZPoints gained by killing an entity (Min: 1.0 / Max: 20.0 / Default: 1.0)
+    "killMultiplier": 1.0
+  },
+
+  "worldgen": {
+    // Should the dimension have Dragon Balls? (Default: true)
+    "spawnDragonBalls": true,
+
+    // Should the dimension have a unique set of Dragon Balls? (Default: true)
+    // Disabling this will allow multiple sets of Dragon Balls to be placed.
+    // But it may cause conflicts with the Dragon Radar, as it only tracks the first set of Dragon Balls.
+    // Warning: Dragon Balls will disappear when a new one is placed if this setting is enabled.
+    "uniqueDragonBalls": true,
+
+    // Range in blocks for the Dragon Balls to spawn (Min: 2000 / Max: 20000 / Default: 3000)
+    "dballSpawnRange": 3000,
+
+    // How many Dragon Balls should spawn (Min: 1 / Default: 7)
+    "dragonBallCount": 7,
+
+    // If true, the mod will create a custom block and you should add custom model and texture.
+    // If false, the default Earth Dragon Ball model will be used.
+    // Note: Custom models and textures should be added to the assets folder if this is enabled.
+    "useCustomDragonBalls": false
+  }
+}

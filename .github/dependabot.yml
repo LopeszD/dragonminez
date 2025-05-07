@@ -1,0 +1,24 @@
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for all configuration options:
+# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+version: 2
+updates:
+  # Update GitHub Actions workflows
+  - package-ecosystem: "github-actions"
+    directory: "/" # Root directory for workflows
+    schedule:
+      interval: "weekly"
+      time: "06:00" # Optional: runs every week at 6 AM UTC
+    reviewers:
+      - "Bruneitor123"
+
+  # Update Gradle dependencies
+  - package-ecosystem: "gradle"
+    directory: "/" # Root directory for Gradle files like build.gradle
+    schedule:
+      interval: "weekly"
+      time: "06:00"
+    reviewers:
+      - "dragonminez/dev-team"

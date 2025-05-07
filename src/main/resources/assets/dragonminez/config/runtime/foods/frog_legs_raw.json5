@@ -1,0 +1,13 @@
+{
+  // Item ID for Raw Frog Legs
+  "itemID": "dragonminez:frog_legs_raw",
+
+  // Health Regeneration for Raw Frog Legs (Min: 0.0 / Max: 1.0 / Default: 0.02)
+  "healthRegen": 0.02,
+
+  // Ki Regeneration for Raw Frog Legs (Min: 0.0 / Max: 1.0 / Default: 0.01)
+  "kiRegen": 0.01,
+
+  // Stamina Regeneration for Raw Frog Legs (Min: 0.0 / Max: 1.0 / Default: 0.01)
+  "staminaRegen": 0.01
+}

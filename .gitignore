@@ -1,0 +1,33 @@
+# eclipse (does anyone use this anymore?)
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
+
+# idea
+out
+*.ipr
+*.iws
+*.iml
+.idea
+
+# gradle
+build
+.gradle
+
+# other
+eclipse
+run
+run-data
+
+# otros mas
+test
+generated
+
+# Files from Forge MDK
+forge*changelog.txt
+
+run-data/
+src/generated/resources/.cache

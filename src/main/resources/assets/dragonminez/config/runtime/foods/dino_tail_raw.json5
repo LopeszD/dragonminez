@@ -1,0 +1,13 @@
+{
+  // Item ID for Raw Dino Tail
+  "itemID": "dragonminez:dinotail_raw",
+
+  // Health Regeneration for Raw Dino Tail (Min: 0.0 / Max: 1.0 / Default: 0.09)
+  "healthRegen": 0.09,
+
+  // Ki Regeneration for Raw Dino Tail (Min: 0.0 / Max: 1.0 / Default: 0.06)
+  "kiRegen": 0.06,
+
+  // Stamina Regeneration for Raw Dino Tail (Min: 0.0 / Max: 1.0 / Default: 0.06)
+  "staminaRegen": 0.06
+}

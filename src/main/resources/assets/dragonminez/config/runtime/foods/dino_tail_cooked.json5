@@ -1,0 +1,13 @@
+{
+  // Item ID for Cooked Dino Tail
+  "itemID": "dragonminez:dinotail_cooked",
+
+  // Health Regeneration for Cooked Dino Tail (Min: 0.0 / Max: 1.0 / Default: 0.18)
+  "healthRegen": 0.18,
+
+  // Ki Regeneration for Cooked Dino Tail (Min: 0.0 / Max: 1.0 / Default: 0.12)
+  "kiRegen": 0.12,
+
+  // Stamina Regeneration for Cooked Dino Tail (Min: 0.0 / Max: 1.0 / Default: 0.12)
+  "staminaRegen": 0.12
+}
