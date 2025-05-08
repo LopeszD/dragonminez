@@ -1,22 +1,12 @@
 {
   "required": true,
-  "package": "com.yuseix.dragonminez.mixin",
+  "package": "com.dragonminez.mod.mixin",
   "refmap": "mixins.dragonminez.refmap.json",
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
   "mixins": [
-    "AccessorRangedAttribute",
-    "PlayerMixin",
-    "ArmorsMixin"
   ],
   "client": [
-    "ExperimentalLoadingInMixin",
-    "ExperimentalWorldCreationMixin",
-    "ServerWorldInfoMixin",
-    "SoundManagerMixin",
-    "TitleScreenMixin",
-    "client.renderer.EntityRenderDispatcherMixin",
-    "client.renderer.HeldItemRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
