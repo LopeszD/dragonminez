@@ -13,7 +13,7 @@ import software.bernie.geckolib.GeckoLib;
  * </p>
  * <p>
  * <strong>Credits to:</strong><br>
- * Yuseix100 - Founder<br>
+ * Yuseix300 - Founder<br>
  * ezShokkoh - Founder<br>
  * KyoSleep - Tech Lead<br>
  * Bruno - Community Admin<br>
