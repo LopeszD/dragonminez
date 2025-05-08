@@ -11,7 +11,7 @@ public class StatData implements INBTSerializable<CompoundTag> {
     private String race = Reference.EMPTY;
     private String form = Reference.EMPTY;
     private int strength = 5;
-    private int dexterity = 5;
+    private int defense = 5;
     private int constitution = 5;
     private int energy = 5;
     private int power = 5;
@@ -24,7 +24,7 @@ public class StatData implements INBTSerializable<CompoundTag> {
         nbt.putString(Reference.Stat.RACE, this.race);
         nbt.putString(Reference.Stat.FORM, this.form);
         nbt.putInt(Reference.Stat.STRENGTH, this.strength);
-        nbt.putInt(Reference.Stat.DEXTERITY, this.dexterity);
+        nbt.putInt(Reference.Stat.DEFENSE, this.defense);
         nbt.putInt(Reference.Stat.CONSTITUTION, this.constitution);
         nbt.putInt(Reference.Stat.ENERGY, this.energy);
         nbt.putInt(Reference.Stat.POWER, this.power);
@@ -38,7 +38,7 @@ public class StatData implements INBTSerializable<CompoundTag> {
         this.race = nbt.getString(Reference.Stat.RACE);
         this.form = nbt.getString(Reference.Stat.FORM);
         this.strength = nbt.getInt(Reference.Stat.STRENGTH);
-        this.dexterity = nbt.getInt(Reference.Stat.DEXTERITY);
+        this.defense = nbt.getInt(Reference.Stat.DEFENSE);
         this.constitution = nbt.getInt(Reference.Stat.CONSTITUTION);
         this.energy = nbt.getInt(Reference.Stat.ENERGY);
         this.power = nbt.getInt(Reference.Stat.POWER);

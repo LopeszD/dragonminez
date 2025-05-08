@@ -52,12 +52,13 @@ public final class Reference {
         public static final String RACE = "race";
         public static final String FORM = "form";
         public static final String STRENGTH = "strength";
-        public static final String DEXTERITY = "dexterity";
+        public static final String DEFENSE = "defense";
         public static final String CONSTITUTION = "constitution";
         public static final String ENERGY = "energy";
         public static final String POWER = "power";
         public static final String ALIGNMENT = "alignment";
         public static final String COMBAT_MODE = "isInCombatMode";
-
+        public static final String[] STATS = {RACE, FORM, STRENGTH, DEFENSE, CONSTITUTION, ENERGY, POWER, ALIGNMENT,
+                COMBAT_MODE};
     }
 }
