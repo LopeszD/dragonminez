@@ -1,5 +1,6 @@
 package com.dragonminez.mod.common;
 
+import com.dragonminez.mod.common.player.stat.model.StatType;
 import net.minecraft.resources.ResourceLocation;
 
 /**
@@ -47,18 +48,7 @@ public final class Reference {
     }
 
     public static class Stat {
-
         public static final ResourceLocation CAP_ID = new ResourceLocation("dragonminez:stat");
-        public static final String RACE = "race";
-        public static final String FORM = "form";
-        public static final String STRENGTH = "strength";
-        public static final String DEFENSE = "defense";
-        public static final String CONSTITUTION = "constitution";
-        public static final String ENERGY = "energy";
-        public static final String POWER = "power";
-        public static final String ALIGNMENT = "alignment";
-        public static final String COMBAT_MODE = "isInCombatMode";
-        public static final String[] STATS = {RACE, FORM, STRENGTH, DEFENSE, CONSTITUTION, ENERGY, POWER, ALIGNMENT,
-                COMBAT_MODE};
+        public static final StatType[] STATS = StatType.values();
     }
 }

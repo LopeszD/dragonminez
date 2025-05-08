@@ -1,6 +1,7 @@
 package com.dragonminez.mod.common.player.stat;
 
 import com.dragonminez.mod.common.Reference;
+import com.dragonminez.mod.common.player.stat.model.StatType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.common.capabilities.AutoRegisterCapability;
 import net.minecraftforge.common.util.INBTSerializable;
@@ -21,29 +22,29 @@ public class StatData implements INBTSerializable<CompoundTag> {
     @Override
     public CompoundTag serializeNBT() {
         final CompoundTag nbt = new CompoundTag();
-        nbt.putString(Reference.Stat.RACE, this.race);
-        nbt.putString(Reference.Stat.FORM, this.form);
-        nbt.putInt(Reference.Stat.STRENGTH, this.strength);
-        nbt.putInt(Reference.Stat.DEFENSE, this.defense);
-        nbt.putInt(Reference.Stat.CONSTITUTION, this.constitution);
-        nbt.putInt(Reference.Stat.ENERGY, this.energy);
-        nbt.putInt(Reference.Stat.POWER, this.power);
-        nbt.putInt(Reference.Stat.ALIGNMENT, this.alignment);
-        nbt.putBoolean(Reference.Stat.COMBAT_MODE, this.isInCombatMode);
+        nbt.putString(StatType.RACE.id(), this.race);
+        nbt.putString(StatType.FORM.id(), this.form);
+        nbt.putInt(StatType.STRENGTH.id(), this.strength);
+        nbt.putInt(StatType.DEFENSE.id(), this.defense);
+        nbt.putInt(StatType.CONSTITUTION.id(), this.constitution);
+        nbt.putInt(StatType.ENERGY.id(), this.energy);
+        nbt.putInt(StatType.POWER.id(), this.power);
+        nbt.putInt(StatType.ALIGNMENT.id(), this.alignment);
+        nbt.putBoolean(StatType.COMBAT_MODE.id(), this.isInCombatMode);
         return nbt;
     }
 
     @Override
     public void deserializeNBT(CompoundTag nbt) {
-        this.race = nbt.getString(Reference.Stat.RACE);
-        this.form = nbt.getString(Reference.Stat.FORM);
-        this.strength = nbt.getInt(Reference.Stat.STRENGTH);
-        this.defense = nbt.getInt(Reference.Stat.DEFENSE);
-        this.constitution = nbt.getInt(Reference.Stat.CONSTITUTION);
-        this.energy = nbt.getInt(Reference.Stat.ENERGY);
-        this.power = nbt.getInt(Reference.Stat.POWER);
-        this.alignment = nbt.getInt(Reference.Stat.ALIGNMENT);
-        this.isInCombatMode = nbt.getBoolean(Reference.Stat.COMBAT_MODE);
+        this.race = nbt.getString(StatType.RACE.id());
+        this.form = nbt.getString(StatType.FORM.id());
+        this.strength = nbt.getInt(StatType.STRENGTH.id());
+        this.defense = nbt.getInt(StatType.DEFENSE.id());
+        this.constitution = nbt.getInt(StatType.CONSTITUTION.id());
+        this.energy = nbt.getInt(StatType.ENERGY.id());
+        this.power = nbt.getInt(StatType.POWER.id());
+        this.alignment = nbt.getInt(StatType.ALIGNMENT.id());
+        this.isInCombatMode = nbt.getBoolean(StatType.COMBAT_MODE.id());
     }
 
     public void setRace(String race) {

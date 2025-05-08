@@ -2,6 +2,7 @@ package com.dragonminez.mod.client.hud;
 
 import com.dragonminez.mod.common.Reference;
 import com.dragonminez.mod.common.player.stat.StatManager;
+import com.dragonminez.mod.common.player.stat.model.StatType;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -50,14 +51,16 @@ public class DebugHud {
                     String.valueOf(statData.getEnergy())
             };
 
-            for (int i = 0; i < Reference.Stat.STATS.length; i++) {
-                final String label = Reference.Stat.STATS[i] + ":";
+            int i = 0;
+            for (StatType stat : Reference.Stat.STATS) {
+                final String label = stat.id() + ":";
                 final String value = values[i];
 
                 graphics.drawString(font, label, labelX, y, 0xaaaaaa, true);
                 int labelWidth = font.width(label);
                 graphics.drawString(font, value, labelX + labelWidth + tabSpacing, y, 0xff8800, true);
                 y += 10;
+                i++;
             }
 
             pose.popPose();
