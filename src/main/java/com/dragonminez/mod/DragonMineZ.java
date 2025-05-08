@@ -1,5 +1,6 @@
 package com.dragonminez.mod;
 
+import com.dragonminez.mod.client.registry.KeybindRegistry;
 import com.dragonminez.mod.common.Reference;
 import com.dragonminez.mod.common.network.NetworkManager;
 import com.dragonminez.mod.common.registry.ConfigRegistry;
@@ -29,17 +30,11 @@ import software.bernie.geckolib.GeckoLib;
 @Mod(Reference.MOD_ID)
 public class DragonMineZ {
 
-	public DragonMineZ() {
-		// Initialize GeckoLib dependency.
-		GeckoLib.initialize();
-
-		// Initialize the ConfigRegistry (This should be done before the system is initialized)
-		ConfigRegistry.init();
-
-		// Initialize the ConfigManager system.
-		ConfigManager.INSTANCE.init();
-
-		// Initialize the NetworkManager system.
-		NetworkManager.INSTANCE.init();
-	}
+    public DragonMineZ() {
+        ConfigRegistry.init();
+        KeybindRegistry.init();
+        ConfigManager.INSTANCE.init();
+        NetworkManager.INSTANCE.init();
+        GeckoLib.initialize();
+    }
 }
