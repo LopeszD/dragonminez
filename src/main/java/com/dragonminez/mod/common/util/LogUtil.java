@@ -70,6 +70,15 @@ public final class LogUtil {
      * Logs a warning message.
      *
      * @param message The warning message to log.
+     */
+    public static void warn(String message) {
+        LOGGER.warn(message);
+    }
+
+    /**
+     * Logs a warning message.
+     *
+     * @param message The warning message to log.
      * @param p0      The parameter to include in the message.
      */
     public static void warn(String message, Object p0) {
