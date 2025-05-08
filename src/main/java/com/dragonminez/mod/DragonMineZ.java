@@ -1,6 +1,7 @@
 package com.dragonminez.mod;
 
 import com.dragonminez.mod.common.Reference;
+import com.dragonminez.mod.common.network.NetworkManager;
 import com.dragonminez.mod.common.registry.ConfigRegistry;
 import com.dragonminez.mod.core.common.config.ConfigManager;
 import net.minecraftforge.fml.common.Mod;
@@ -37,5 +38,8 @@ public class DragonMineZ {
 
 		// Initialize the ConfigManager system.
 		ConfigManager.INSTANCE.init();
+
+		// Initialize the NetworkManager system.
+		NetworkManager.INSTANCE.init();
 	}
 }
