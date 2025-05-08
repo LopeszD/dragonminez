@@ -43,17 +43,20 @@ public class DebugHud {
             int tabSpacing = 6;
 
             final String[] values = {
-                    statData.getRace(), statData.getForm(),
+                    statData.getRace(),
+                    statData.getForm(),
                     String.valueOf(statData.getStrength()),
                     String.valueOf(statData.getDefense()),
                     String.valueOf(statData.getConstitution()),
+                    String.valueOf(statData.getEnergy()),
                     String.valueOf(statData.getPower()),
-                    String.valueOf(statData.getEnergy())
+                    String.valueOf(statData.getAlignment()),
+                    String.valueOf(statData.isInCombatMode())
             };
 
             int i = 0;
             for (StatType stat : Reference.Stat.STATS) {
-                final String label = stat.id() + ":";
+                final String label = stat.legibleId() + ":";
                 final String value = values[i];
 
                 graphics.drawString(font, label, labelX, y, 0xaaaaaa, true);
