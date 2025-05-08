@@ -55,7 +55,7 @@ jobs:
         if: success()
         uses: pmd/pmd-github-action@v2
         with:
-          sourcePath: 'src/main/java/com/yuseix/dragonminez'
+          sourcePath: 'src/main/java/com/dragonminez/mod'
           rulesets: '.github/workflows/pmd/quickstart.xml'
           analyzeModifiedFilesOnly: true
 
