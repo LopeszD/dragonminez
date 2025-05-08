@@ -15,11 +15,6 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class DebugHud {
 
-    private final static String[] LABELS = {
-            "Race:", "Form:", "Strength:", "Dexterity:",
-            "Constitution:", "Power:", "Energy:"
-    };
-
     @SubscribeEvent
     public static void onRenderGameOverlay(RenderGuiOverlayEvent.Pre event) {
         if (FMLEnvironment.production) {
@@ -49,15 +44,15 @@ public class DebugHud {
             final String[] values = {
                     statData.getRace(), statData.getForm(),
                     String.valueOf(statData.getStrength()),
-                    String.valueOf(statData.getDexterity()),
+                    String.valueOf(statData.getDefense()),
                     String.valueOf(statData.getConstitution()),
                     String.valueOf(statData.getPower()),
                     String.valueOf(statData.getEnergy())
             };
 
-            for (int i = 0; i < DebugHud.LABELS.length; i++) {
-                String label = DebugHud.LABELS[i];
-                String value = values[i];
+            for (int i = 0; i < Reference.Stat.STATS.length; i++) {
+                final String label = Reference.Stat.STATS[i] + ":";
+                final String value = values[i];
 
                 graphics.drawString(font, label, labelX, y, 0xaaaaaa, true);
                 int labelWidth = font.width(label);

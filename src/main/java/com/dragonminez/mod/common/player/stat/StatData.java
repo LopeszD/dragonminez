@@ -70,12 +70,12 @@ public class StatData implements INBTSerializable<CompoundTag> {
         this.strength = strength;
     }
 
-    public int getDexterity() {
-        return dexterity;
+    public int getDefense() {
+        return this.defense;
     }
 
-    public void setDexterity(int dexterity) {
-        this.dexterity = dexterity;
+    public void setDefense(int defense) {
+        this.defense = defense;
     }
 
     public int getConstitution() {
