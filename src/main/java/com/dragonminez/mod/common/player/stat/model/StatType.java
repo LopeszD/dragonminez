@@ -25,7 +25,7 @@ public enum StatType {
     CONSTITUTION(false),
     ENERGY(false),
     POWER(false),
-    ALIGNMENT(true),
+    ALIGNMENT(false),
     COMBAT_MODE(true),
     BLOCKING(true);
 
