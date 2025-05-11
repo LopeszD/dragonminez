@@ -18,9 +18,12 @@ public class PacketHandlerS2CSyncStat<T extends PacketS2CSyncPublicStat> {
             final Level level = Minecraft.getInstance().level;
             if (level == null) return;
 
-            final Entity entity = level.getEntity(packet.getPlayerId());
-            if (!(entity instanceof Player player)) return;
+            Entity entity = Minecraft.getInstance().player;
+            if (packet.serializeId()) {
+                entity = level.getEntity(packet.getPlayerId());
+            }
 
+            if (!(entity instanceof Player player)) return;
             StatManager.INSTANCE.update(player, packet.compactedData());
         });
         context.setPacketHandled(true);
