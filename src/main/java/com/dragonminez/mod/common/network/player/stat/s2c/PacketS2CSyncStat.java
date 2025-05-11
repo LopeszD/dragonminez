@@ -1,38 +1,63 @@
 package com.dragonminez.mod.common.network.player.stat.s2c;
 
-import com.dragonminez.mod.common.player.stat.StatManager;
+import com.dragonminez.mod.common.player.stat.StatData;
 import com.dragonminez.mod.core.common.network.IPacket;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.entity.player.Player;
 
-public class PacketS2CSyncStat implements IPacket {
+public class PacketS2CSyncStat extends PacketS2CSyncPublicStat implements IPacket {
 
-    private CompoundTag nbt;
-    private final int playerId;
+    private final int strength;
+    private final int defense;
+    private final int constitution;
+    private final int energy;
+    private final int power;
+    private final int alignment;
 
-    public PacketS2CSyncStat(Player player) {
-        StatManager.INSTANCE.retrieveStatData(player, statData ->
-                this.nbt = statData.serializeNBT());
-        this.playerId = player.getId();
+    public PacketS2CSyncStat(StatData data) {
+        super(data, null);
+        this.strength = data.getStrength();
+        this.defense = data.getDefense();
+        this.constitution = data.getConstitution();
+        this.energy = data.getEnergy();
+        this.power = data.getPower();
+        this.alignment = data.getAlignment();
     }
 
     public PacketS2CSyncStat(FriendlyByteBuf buf) {
-        this.nbt = buf.readNbt();
-        this.playerId = buf.readInt();
+        super(buf);
+        this.strength = buf.readInt();
+        this.defense = buf.readInt();
+        this.constitution = buf.readInt();
+        this.energy = buf.readInt();
+        this.power = buf.readInt();
+        this.alignment = buf.readInt();
     }
 
     @Override
     public void encode(FriendlyByteBuf buf) {
-        buf.writeNbt(this.nbt);
-        buf.writeInt(this.playerId);
+        super.encode(buf);
+        buf.writeInt(this.strength);
+        buf.writeInt(this.defense);
+        buf.writeInt(this.constitution);
+        buf.writeInt(this.energy);
+        buf.writeInt(this.power);
+        buf.writeInt(this.alignment);
     }
 
-    public CompoundTag getNbt() {
-        return this.nbt;
+    @Override
+    public StatData compactedData() {
+        final StatData data = super.compactedData();
+        data.setStrength(this.strength);
+        data.setDefense(this.defense);
+        data.setConstitution(this.constitution);
+        data.setEnergy(this.energy);
+        data.setPower(this.power);
+        data.setAlignment(this.alignment);
+        return data;
     }
 
-    public int getPlayerId() {
-        return this.playerId;
+    @Override
+    public boolean serializeId() {
+        return false;
     }
 }

@@ -1,23 +1,25 @@
 package com.dragonminez.mod.common.player.stat.model;
 
 public enum StatType {
-    RACE,
-    FORM,
-    STRENGTH,
-    DEFENSE,
-    CONSTITUTION,
-    ENERGY,
-    POWER,
-    ALIGNMENT,
-    COMBAT_MODE,
-    BLOCKING;
+    RACE(true),
+    FORM(true),
+    STRENGTH(false),
+    DEFENSE(false),
+    CONSTITUTION(false),
+    ENERGY(false),
+    POWER(false),
+    ALIGNMENT(true),
+    COMBAT_MODE(true),
+    BLOCKING(true);
 
     final String id;
     final String legibleId;
+    final boolean isPublic;
 
-    StatType() {
+    StatType(boolean isPublic) {
         this.id = this.name().toLowerCase();
         this.legibleId = this.createLegibleId();
+        this.isPublic = isPublic;
     }
 
     public String id() {
@@ -26,6 +28,10 @@ public enum StatType {
 
     public String legibleId() {
         return this.legibleId;
+    }
+
+    public boolean isPublic() {
+        return this.isPublic;
     }
 
     private String createLegibleId() {
