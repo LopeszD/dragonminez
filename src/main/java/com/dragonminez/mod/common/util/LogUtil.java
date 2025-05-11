@@ -45,6 +45,10 @@ public final class LogUtil {
         LOGGER.info(message, p0);
     }
 
+    public static void info(String message, Object p0, Object p1, Object p2) {
+        LOGGER.info(message, p0, p1, p2);
+    }
+
     /**
      * Logs an informational message with one parameter.
      *
@@ -188,4 +192,6 @@ public final class LogUtil {
     // Private constructor to prevent instantiation
     private LogUtil() {
     }
+
+
 }
