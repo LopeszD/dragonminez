@@ -51,7 +51,8 @@ public class DebugHud {
                     String.valueOf(statData.getEnergy()),
                     String.valueOf(statData.getPower()),
                     String.valueOf(statData.getAlignment()),
-                    String.valueOf(statData.isInCombatMode())
+                    String.valueOf(statData.isInCombatMode()),
+                    String.valueOf(statData.isBlocking())
             };
 
             int i = 0;

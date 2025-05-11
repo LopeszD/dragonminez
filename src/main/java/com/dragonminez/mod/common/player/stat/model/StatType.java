@@ -9,7 +9,8 @@ public enum StatType {
     ENERGY,
     POWER,
     ALIGNMENT,
-    COMBAT_MODE;
+    COMBAT_MODE,
+    BLOCKING;
 
     final String id;
     final String legibleId;

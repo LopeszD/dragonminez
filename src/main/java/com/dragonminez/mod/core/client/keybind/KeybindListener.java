@@ -13,6 +13,7 @@ import java.util.Map;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class KeybindListener {
+    
     private static final Map<Keybind, Boolean> keyStateMap = new HashMap<>();
 
     @SubscribeEvent

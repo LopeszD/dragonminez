@@ -1,7 +1,6 @@
 package com.dragonminez.mod.common.player.stat;
 
 import net.minecraft.core.Direction;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityManager;
@@ -23,8 +22,8 @@ public class StatManager implements ICapabilityProvider {
         // Private constructor to prevent instantiation
     }
 
-    public void update(Player player, CompoundTag nbt) {
-        this.retrieveStatData(player, statData -> statData.deserializeNBT(nbt));
+    public void update(Player player, StatData newStatData) {
+        this.retrieveStatData(player, oldStatData -> oldStatData.deserializeNBT(newStatData.serializeNBT()));
     }
 
     public void retrieveStatData(Player player, Consumer<StatData> consumer) {

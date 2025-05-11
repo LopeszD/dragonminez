@@ -18,6 +18,23 @@ public class StatData implements INBTSerializable<CompoundTag> {
     private int power = 5;
     private int alignment = 100;
     private boolean isInCombatMode = false;
+    private boolean isBlocking = false;
+
+    public StatData() {}
+
+    public StatData(String race, String form, int defense, int strength, int constitution, int energy, int power,
+                    int alignment, boolean isInCombatMode, boolean isBlocking) {
+        this.race = race;
+        this.form = form;
+        this.defense = defense;
+        this.strength = strength;
+        this.constitution = constitution;
+        this.energy = energy;
+        this.power = power;
+        this.alignment = alignment;
+        this.isInCombatMode = isInCombatMode;
+        this.isBlocking = isBlocking;
+    }
 
     @Override
     public CompoundTag serializeNBT() {
@@ -31,6 +48,7 @@ public class StatData implements INBTSerializable<CompoundTag> {
         nbt.putInt(StatType.POWER.id(), this.power);
         nbt.putInt(StatType.ALIGNMENT.id(), this.alignment);
         nbt.putBoolean(StatType.COMBAT_MODE.id(), this.isInCombatMode);
+        nbt.putBoolean(StatType.BLOCKING.id(), this.isBlocking);
         return nbt;
     }
 
@@ -45,6 +63,7 @@ public class StatData implements INBTSerializable<CompoundTag> {
         this.power = nbt.getInt(StatType.POWER.id());
         this.alignment = nbt.getInt(StatType.ALIGNMENT.id());
         this.isInCombatMode = nbt.getBoolean(StatType.COMBAT_MODE.id());
+        this.isBlocking = nbt.getBoolean(StatType.BLOCKING.id());
     }
 
     public void setRace(String race) {
@@ -117,5 +136,13 @@ public class StatData implements INBTSerializable<CompoundTag> {
 
     public void setInCombatMode(boolean inCombatMode) {
         isInCombatMode = inCombatMode;
+    }
+
+    public boolean isBlocking() {
+        return isBlocking;
+    }
+
+    public void setBlocking(boolean blocking) {
+        isBlocking = blocking;
     }
 }

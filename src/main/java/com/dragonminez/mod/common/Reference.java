@@ -42,7 +42,6 @@ public final class Reference {
      */
     public static final String EMPTY = "%s:empty".formatted(MOD_ID);
 
-
     // Private constructor to prevent instantiation
     private Reference() {
     }
