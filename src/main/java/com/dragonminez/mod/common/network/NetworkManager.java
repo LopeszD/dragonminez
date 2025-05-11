@@ -25,8 +25,8 @@ public class NetworkManager {
                 .clientAcceptedVersions(s -> true)
                 .serverAcceptedVersions(s -> true)
                 .simpleChannel();
-        NetworkClientManager.INSTANCE.init(channel);
         NetworkServerManager.INSTANCE.init(channel);
+        NetworkClientManager.INSTANCE.init(channel);
     }
 
     public <MSG> void sendToServer(MSG message) {
