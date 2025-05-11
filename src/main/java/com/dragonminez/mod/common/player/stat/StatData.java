@@ -134,7 +134,7 @@ public class StatData implements INBTSerializable<CompoundTag> {
         return isInCombatMode;
     }
 
-    public void setInCombatMode(boolean inCombatMode) {
+    public void setCombatMode(boolean inCombatMode) {
         isInCombatMode = inCombatMode;
     }
 

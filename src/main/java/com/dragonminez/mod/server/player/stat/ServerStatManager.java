@@ -45,12 +45,7 @@ public class ServerStatManager extends StatManager {
      * @param log            Whether to log this change to console.
      */
     public void setRace(Player player, String raceIdentifier, boolean log) {
-        this.modifyStat(player, StatType.RACE, data -> {
-            data.setRace(raceIdentifier);
-            if (log) {
-                LogUtil.info("Race set to {} for player {}", raceIdentifier, player.getName().getString());
-            }
-        });
+        this.setStatInternal(player, StatType.RACE, raceIdentifier, data -> data.setRace(raceIdentifier), log);
     }
 
     /**
@@ -62,6 +57,58 @@ public class ServerStatManager extends StatManager {
      */
     public void setRace(Player player, ResourceLocation location, boolean log) {
         this.setRace(player, location.toString(), log);
+    }
+
+    public void setForm(Player player, String formIdentifier, boolean log) {
+        this.setStatInternal(player, StatType.FORM, formIdentifier, data -> data.setForm(formIdentifier), log);
+    }
+
+    public void setForm(Player player, ResourceLocation location, boolean log) {
+        this.setForm(player, location.toString(), log);
+    }
+
+    public void setStrength(Player player, int strength, boolean log) {
+        this.setStatInternal(player, StatType.STRENGTH, strength, data -> data.setStrength(strength), log);
+    }
+
+    public void setDefense(Player player, int defense, boolean log) {
+        this.setStatInternal(player, StatType.DEFENSE, defense, data -> data.setDefense(defense), log);
+    }
+
+    public void setConstitution(Player player, int constitution, boolean log) {
+        this.setStatInternal(player, StatType.CONSTITUTION, constitution,
+                data -> data.setConstitution(constitution), log);
+    }
+
+    public void setEnergy(Player player, int energy, boolean log) {
+        this.setStatInternal(player, StatType.ENERGY, energy, data -> data.setEnergy(energy), log);
+    }
+
+    public void setPower(Player player, int power, boolean log) {
+        this.setStatInternal(player, StatType.POWER, power, data -> data.setPower(power), log);
+    }
+
+    public void setAlignment(Player player, int alignment, boolean log) {
+        this.setStatInternal(player, StatType.ALIGNMENT, alignment, data -> data.setAlignment(alignment), log);
+    }
+
+    public void setCombatMode(Player player, boolean combatMode, boolean log) {
+        this.setStatInternal(player, StatType.COMBAT_MODE, combatMode,
+                data -> data.setCombatMode(combatMode), log);
+    }
+
+    public void setBlocking(Player player, boolean blocking, boolean log) {
+        this.setStatInternal(player, StatType.BLOCKING, blocking, data -> data.setBlocking(blocking), log);
+    }
+
+    private void setStatInternal(Player player, StatType type, Object value, Consumer<StatData> dataConsumer, boolean log) {
+        this.modifyStat(player, type, data -> {
+            dataConsumer.accept(data);
+            if (log) {
+                LogUtil.info("{} set to {} for player {}", type.legibleId(), value,
+                        player.getName().getString());
+            }
+        });
     }
 
     /**
