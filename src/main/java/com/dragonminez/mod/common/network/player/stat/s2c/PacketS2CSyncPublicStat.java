@@ -92,6 +92,6 @@ public class PacketS2CSyncPublicStat implements IPacket {
      */
     public StatData compactedData() {
         return new StatData(this.race, this.form, 0, 0, 0, 0, 0,
-                0, this.isInCombatMode, this.isBlocking);
+                0, 0, this.isInCombatMode, this.isBlocking);
     }
 }

@@ -13,48 +13,18 @@ import net.minecraft.world.entity.player.Player;
 
 import java.util.function.Consumer;
 
-/**
- * Server-side implementation of {@link StatManager} responsible for handling
- * and synchronizing player stat updates.
- * <p>
- * Automatically determines whether a stat should be sent to all tracking players
- * or only the player themselves based on the stat's {@link StatType#isPublic()} flag.
- * <p>
- * This division reduces bandwidth, improves performance, and prevents sensitive
- * player information from being shared with others unnecessarily.
- */
 public class ServerStatManager extends StatManager {
 
-    /**
-     * Global instance of the server-side stat manager.
-     */
     public static ServerStatManager INSTANCE = new ServerStatManager();
 
-    /**
-     * Private constructor to enforce singleton pattern.
-     */
     private ServerStatManager() {
         super();
     }
 
-    /**
-     * Sets the race for the specified player and optionally logs the change.
-     *
-     * @param player         The player whose race is being set.
-     * @param raceIdentifier The new race identifier.
-     * @param log            Whether to log this change to console.
-     */
     public void setRace(Player player, String raceIdentifier, boolean log) {
         this.setStatInternal(player, StatType.RACE, raceIdentifier, data -> data.setRace(raceIdentifier), log);
     }
 
-    /**
-     * Overload of {@link #setRace(Player, String, boolean)} to allow using a {@link ResourceLocation}.
-     *
-     * @param player   The player whose race is being set.
-     * @param location The new race identifier as a ResourceLocation.
-     * @param log      Whether to log this change to console.
-     */
     public void setRace(Player player, ResourceLocation location, boolean log) {
         this.setRace(player, location.toString(), log);
     }
@@ -71,21 +41,24 @@ public class ServerStatManager extends StatManager {
         this.setStatInternal(player, StatType.STRENGTH, strength, data -> data.setStrength(strength), log);
     }
 
-    public void setDefense(Player player, int defense, boolean log) {
-        this.setStatInternal(player, StatType.DEFENSE, defense, data -> data.setDefense(defense), log);
-    }
-
-    public void setConstitution(Player player, int constitution, boolean log) {
-        this.setStatInternal(player, StatType.CONSTITUTION, constitution,
-                data -> data.setConstitution(constitution), log);
+    public void setStrikePower(Player player, int strikePower, boolean log) {
+        this.setStatInternal(player, StatType.STRIKE_POWER, strikePower, data -> data.setStrikePower(strikePower), log);
     }
 
     public void setEnergy(Player player, int energy, boolean log) {
         this.setStatInternal(player, StatType.ENERGY, energy, data -> data.setEnergy(energy), log);
     }
 
-    public void setPower(Player player, int power, boolean log) {
-        this.setStatInternal(player, StatType.POWER, power, data -> data.setPower(power), log);
+    public void setVitality(Player player, int vitality, boolean log) {
+        this.setStatInternal(player, StatType.VITALITY, vitality, data -> data.setVitality(vitality), log);
+    }
+
+    public void setResistance(Player player, int resistance, boolean log) {
+        this.setStatInternal(player, StatType.RESISTANCE, resistance, data -> data.setResistance(resistance), log);
+    }
+
+    public void setKiPower(Player player, int kiPower, boolean log) {
+        this.setStatInternal(player, StatType.KI_POWER, kiPower, data -> data.setKiPower(kiPower), log);
     }
 
     public void setAlignment(Player player, int alignment, boolean log) {
@@ -111,30 +84,12 @@ public class ServerStatManager extends StatManager {
         });
     }
 
-    /**
-     * Retrieves and modifies the stat data for a player, then triggers sync based on stat visibility.
-     *
-     * @param player   The player whose stat will be modified.
-     * @param type     The type of stat being changed.
-     * @param consumer A consumer that applies changes to the {@link StatData}.
-     */
     private void modifyStat(Player player, StatType type, Consumer<StatData> consumer) {
         this.retrieveStatData(player, consumer);
-        // Ensure update is sent to correct targets (public vs private)
-        var ignored = consumer.andThen(data -> this.sendUpdate(player, data, type.isPublic()));
+        // Make sure to send update after modification
+        consumer.andThen(data -> this.sendUpdate(player, data, type.isPublic()));
     }
 
-    /**
-     * Sends updated stat data to the correct recipients based on visibility:
-     * <ul>
-     *     <li>Public stats: Sent to all tracking players and the player.</li>
-     *     <li>Private stats: Sent only to the player.</li>
-     * </ul>
-     *
-     * @param player   The player whose stats are being updated.
-     * @param data     The updated stat data.
-     * @param isPublic Whether the stat should be synced publicly.
-     */
     private void sendUpdate(Player player, StatData data, boolean isPublic) {
         if (isPublic) {
             NetworkManager.INSTANCE.sendToTracking((ServerPlayer) player,

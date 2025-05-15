@@ -11,26 +11,30 @@ public class StatData implements INBTSerializable<CompoundTag> {
 
     private String race = Reference.EMPTY;
     private String form = Reference.EMPTY;
+
     private int strength = 5;
-    private int defense = 5;
-    private int constitution = 5;
+    private int strikePower = 5;
     private int energy = 5;
-    private int power = 5;
+    private int vitality = 5;
+    private int resistance = 5;
+    private int kiPower = 5;
+
     private int alignment = 100;
     private boolean isInCombatMode = false;
     private boolean isBlocking = false;
 
     public StatData() {}
 
-    public StatData(String race, String form, int defense, int strength, int constitution, int energy, int power,
-                    int alignment, boolean isInCombatMode, boolean isBlocking) {
+    public StatData(String race, String form, int strength, int strikePower, int energy, int vitality, int resistance,
+                    int kiPower, int alignment, boolean isInCombatMode, boolean isBlocking) {
         this.race = race;
         this.form = form;
-        this.defense = defense;
         this.strength = strength;
-        this.constitution = constitution;
+        this.strikePower = strikePower;
         this.energy = energy;
-        this.power = power;
+        this.vitality = vitality;
+        this.resistance = resistance;
+        this.kiPower = kiPower;
         this.alignment = alignment;
         this.isInCombatMode = isInCombatMode;
         this.isBlocking = isBlocking;
@@ -42,10 +46,11 @@ public class StatData implements INBTSerializable<CompoundTag> {
         nbt.putString(StatType.RACE.id(), this.race);
         nbt.putString(StatType.FORM.id(), this.form);
         nbt.putInt(StatType.STRENGTH.id(), this.strength);
-        nbt.putInt(StatType.DEFENSE.id(), this.defense);
-        nbt.putInt(StatType.CONSTITUTION.id(), this.constitution);
+        nbt.putInt(StatType.STRIKE_POWER.id(), this.strikePower);
         nbt.putInt(StatType.ENERGY.id(), this.energy);
-        nbt.putInt(StatType.POWER.id(), this.power);
+        nbt.putInt(StatType.VITALITY.id(), this.vitality);
+        nbt.putInt(StatType.RESISTANCE.id(), this.resistance);
+        nbt.putInt(StatType.KI_POWER.id(), this.kiPower);
         nbt.putInt(StatType.ALIGNMENT.id(), this.alignment);
         nbt.putBoolean(StatType.COMBAT_MODE.id(), this.isInCombatMode);
         nbt.putBoolean(StatType.BLOCKING.id(), this.isBlocking);
@@ -57,21 +62,22 @@ public class StatData implements INBTSerializable<CompoundTag> {
         this.race = nbt.getString(StatType.RACE.id());
         this.form = nbt.getString(StatType.FORM.id());
         this.strength = nbt.getInt(StatType.STRENGTH.id());
-        this.defense = nbt.getInt(StatType.DEFENSE.id());
-        this.constitution = nbt.getInt(StatType.CONSTITUTION.id());
+        this.strikePower = nbt.getInt(StatType.STRIKE_POWER.id());
         this.energy = nbt.getInt(StatType.ENERGY.id());
-        this.power = nbt.getInt(StatType.POWER.id());
+        this.vitality = nbt.getInt(StatType.VITALITY.id());
+        this.resistance = nbt.getInt(StatType.RESISTANCE.id());
+        this.kiPower = nbt.getInt(StatType.KI_POWER.id());
         this.alignment = nbt.getInt(StatType.ALIGNMENT.id());
         this.isInCombatMode = nbt.getBoolean(StatType.COMBAT_MODE.id());
         this.isBlocking = nbt.getBoolean(StatType.BLOCKING.id());
     }
 
-    public void setRace(String race) {
-        this.race = race;
-    }
-
     public String getRace() {
         return race;
+    }
+
+    public void setRace(String race) {
+        this.race = race;
     }
 
     public String getForm() {
@@ -90,20 +96,12 @@ public class StatData implements INBTSerializable<CompoundTag> {
         this.strength = strength;
     }
 
-    public int getDefense() {
-        return this.defense;
+    public int getStrikePower() {
+        return strikePower;
     }
 
-    public void setDefense(int defense) {
-        this.defense = defense;
-    }
-
-    public int getConstitution() {
-        return constitution;
-    }
-
-    public void setConstitution(int constitution) {
-        this.constitution = constitution;
+    public void setStrikePower(int strikePower) {
+        this.strikePower = strikePower;
     }
 
     public int getEnergy() {
@@ -114,12 +112,28 @@ public class StatData implements INBTSerializable<CompoundTag> {
         this.energy = energy;
     }
 
-    public int getPower() {
-        return power;
+    public int getVitality() {
+        return vitality;
     }
 
-    public void setPower(int power) {
-        this.power = power;
+    public void setVitality(int vitality) {
+        this.vitality = vitality;
+    }
+
+    public int getResistance() {
+        return resistance;
+    }
+
+    public void setResistance(int resistance) {
+        this.resistance = resistance;
+    }
+
+    public int getKiPower() {
+        return kiPower;
+    }
+
+    public void setKiPower(int kiPower) {
+        this.kiPower = kiPower;
     }
 
     public int getAlignment() {
