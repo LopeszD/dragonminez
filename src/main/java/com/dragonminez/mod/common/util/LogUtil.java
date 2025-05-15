@@ -13,14 +13,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * Utility class for handling mod logging at various levels.
+ * Utility class for centralized logging in the mod.
  * <p>
- * This class provides methods for logging messages at different levels, such as
- * INFO and WARNING. It integrates with Forge's logging system and can also issue
- * mod loading warnings when necessary.
+ * Provides simplified logging methods for various levels (info, warn, error, debug),
+ * supports parameterized messages with varargs, and integrates mod loading warnings.
+ * Also provides methods for generating custom crash reports.
  * </p>
  * <p>
- * Since this class only contains utility methods, it should not be instantiated.
+ * This class is not instantiable and only contains static methods.
  * </p>
  */
 public final class LogUtil {
@@ -28,170 +28,103 @@ public final class LogUtil {
     private static final Logger LOGGER = LogManager.getLogger();
 
     /**
-     * Logs an informational message.
+     * Logs an informational message with optional parameters.
      *
-     * @param message The message to log.
+     * @param message The message string, possibly containing placeholders.
+     * @param args    Optional arguments referenced by the format specifiers in the message.
      */
-    public static void info(String message) {
-        LOGGER.info(message);
+    public static void info(String message, Object... args) {
+        LOGGER.info(message, args);
     }
 
     /**
-     * Logs an informational message with one parameter.
+     * Logs a warning message with optional parameters.
      *
-     * @param message The message to log.
+     * @param message The warning message string, possibly containing placeholders.
+     * @param args    Optional arguments referenced by the format specifiers in the message.
      */
-    public static void info(String message, Object p0) {
-        LOGGER.info(message, p0);
-    }
-
-    public static void info(String message, Object p0, Object p1, Object p2) {
-        LOGGER.info(message, p0, p1, p2);
+    public static void warn(String message, Object... args) {
+        LOGGER.warn(message, args);
     }
 
     /**
-     * Logs an informational message with one parameter.
-     *
-     * @param message The message to log.
-     * @param p0      The first parameter to include in the message.
-     * @param p1      The second parameter to include in the message.
-     */
-    public static void info(String message, Object p0, Object p1) {
-        LOGGER.info(message, p0, p1);
-    }
-
-    /**
-     * Logs a warning message.
-     *
-     * @param message The warning message to log.
-     */
-    public static void warnMod(String message) {
-        LOGGER.warn(message);
-        logModWarning(message);
-    }
-
-    /**
-     * Logs a warning message.
-     *
-     * @param message The warning message to log.
-     */
-    public static void warn(String message) {
-        LOGGER.warn(message);
-    }
-
-    /**
-     * Logs a warning message.
-     *
-     * @param message The warning message to log.
-     * @param p0      The parameter to include in the message.
-     */
-    public static void warn(String message, Object p0) {
-        LOGGER.warn(message, p0);
-    }
-
-    /**
-     * Logs an error message.
-     *
-     * @param message The error message to log.
-     */
-    public static void error(String message) {
-        LOGGER.error(message);
-    }
-
-    /**
-     * Logs an error message.
-     *
-     * @param message The error message to log.
-     * @param p0      The parameter to include in the message.
-     */
-    public static void error(String message, Object p0) {
-        LOGGER.error(message, p0);
-    }
-
-    /**
-     * Logs an error message.
-     *
-     * @param message The error message to log.
-     * @param p0      The parameter to include in the message.
-     * @param e       The exception that caused the error.
-     */
-    public static void error(String message, String p0, Exception e) {
-        LOGGER.error(message, p0, e);
-    }
-
-    /**
-     * Logs an error message.
-     *
-     * @param message The error message to log.
-     * @param p0      The parameter to include in the message.
-     * @param p1      The second parameter to include in the message.
-     */
-    public static void error(String message, String p0, String p1) {
-        LOGGER.error(message, p0, p1);
-    }
-
-    /**
-     * Logs a debug message (only appears if debug logging is enabled).
-     *
-     * @param message The debug message to log.
-     */
-    public static void debug(String message) {
-        LOGGER.debug(message);
-    }
-
-    /**
-     * Logs a mod loading warning in addition to the standard log warning.
+     * Logs a mod-specific warning message.
      * <p>
-     * This method issues a warning using Forge's {@link ModLoader}, which can be
-     * useful for notifying users of potential issues during mod initialization.
+     * Logs the warning and additionally issues a mod loading warning to
+     * notify users during mod initialization.
      * </p>
      *
-     * @param message The warning message to display.
+     * @param message The warning message string, possibly containing placeholders.
+     * @param args    Optional arguments referenced by the format specifiers in the message.
      */
-    public static void logModWarning(String message) {
-        final IModInfo modInfo = ModLoadingContext.get().getActiveContainer().getModInfo();
+    public static void warnMod(String message, Object... args) {
+        LOGGER.warn(message, args);
+        logModWarning(String.format(message, args));
+    }
+
+    /**
+     * Logs an error message with optional parameters.
+     *
+     * @param message The error message string, possibly containing placeholders.
+     * @param args    Optional arguments referenced by the format specifiers in the message.
+     */
+    public static void error(String message, Object... args) {
+        LOGGER.error(message, args);
+    }
+
+    /**
+     * Logs a debug message with optional parameters.
+     * <p>
+     * Will only appear if debug logging is enabled.
+     * </p>
+     *
+     * @param message The debug message string, possibly containing placeholders.
+     * @param args    Optional arguments referenced by the format specifiers in the message.
+     */
+    public static void debug(String message, Object... args) {
+        LOGGER.debug(message, args);
+    }
+
+    /**
+     * Issues a mod loading warning through Forge's mod loading system.
+     *
+     * @param message The warning message to display to users during mod loading.
+     */
+    private static void logModWarning(String message) {
+        IModInfo modInfo = ModLoadingContext.get().getActiveContainer().getModInfo();
         ModLoadingWarning modLoadingWarning = new ModLoadingWarning(modInfo, ModLoadingStage.CONSTRUCT, message);
         ModLoader.get().addWarning(modLoadingWarning);
     }
 
     /**
-     * Creates a custom crash report and terminates the game.
+     * Creates a detailed crash report and terminates the game.
      * <p>
-     * This method generates a detailed crash report with mod-specific information
-     * and forces the game to close.
+     * The crash report contains mod-specific information and the provided exception cause.
      * </p>
      *
-     * @param errorMessage The message to include in the crash report.
-     * @param exception   The exception that caused the crash.
+     * @param errorMessage The message to include in the crash report cause.
+     * @param exception    The throwable that caused the crash.
+     * @throws ReportedException Always thrown to terminate the game with the crash report.
      */
     public static void crash(String errorMessage, Throwable exception) {
-        // Create a custom crash report
-        final CrashReport crashReport = new CrashReport("Critical Mod Error", exception);
-        final CrashReportCategory category = crashReport.addCategory("Mod Information");
+        CrashReport crashReport = new CrashReport("Critical Mod Error", exception);
+        CrashReportCategory category = crashReport.addCategory("Mod Information");
         category.setDetail("Mod ID", Reference.MOD_ID);
-        category.setDetail("Cause", errorMessage + ". Please report this issue via ticket with " +
-                "the complete crash report file!");
-
-        // Terminate the game
+        category.setDetail("Cause", errorMessage + ". Please report this issue via ticket with the complete crash report file!");
         throw new ReportedException(crashReport);
     }
 
     /**
-     * Creates a custom crash report and terminates the game.
-     * <p>
-     * This method generates a detailed crash report with mod-specific information
-     * and forces the game to close.
-     * </p>
+     * Creates a detailed crash report with a generated Throwable and terminates the game.
      *
-     * @param errorMessage The message to include in the crash report.
+     * @param errorMessage The message to include in the crash report cause.
+     * @throws ReportedException Always thrown to terminate the game with the crash report.
      */
     public static void crash(String errorMessage) {
-        LogUtil.crash(errorMessage, new Throwable(errorMessage));
+        crash(errorMessage, new Throwable(errorMessage));
     }
 
-    // Private constructor to prevent instantiation
+    // Prevent instantiation
     private LogUtil() {
     }
-
-
 }
