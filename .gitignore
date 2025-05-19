@@ -11,7 +11,12 @@ out
 *.ipr
 *.iws
 *.iml
-.idea
+
+# Ignore everything in .idea except code styles
+.idea/*
+!.idea/codeStyles/
+!.idea/codeStyles/*.xml
+
 
 # gradle
 build
