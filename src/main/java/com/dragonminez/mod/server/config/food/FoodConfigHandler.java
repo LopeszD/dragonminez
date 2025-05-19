@@ -7,43 +7,43 @@ import com.dragonminez.mod.core.common.config.model.IConfigHandler;
 
 public class FoodConfigHandler implements IConfigHandler<FoodConfig> {
 
-    @Override
-    public String identifier() {
-        return ConfigRegistry.FOOD;
-    }
+  @Override
+  public String identifier() {
+    return ConfigRegistry.FOOD;
+  }
 
-    @Override
-    public Class<FoodConfig> getClazz() {
-        return FoodConfig.class;
-    }
+  @Override
+  public Class<FoodConfig> getClazz() {
+    return FoodConfig.class;
+  }
 
-    @Override
-    public int getPriority() {
-        return 1;
-    }
+  @Override
+  public int getPriority() {
+    return 1;
+  }
 
-    @Override
-    public ConfigDist getDist() {
-        return ConfigDist.SERVER;
-    }
+  @Override
+  public ConfigDist getDist() {
+    return ConfigDist.SERVER;
+  }
 
-    @Override
-    public ConfigType getType() {
-        return ConfigType.RUNTIME;
-    }
+  @Override
+  public ConfigType getType() {
+    return ConfigType.RUNTIME;
+  }
 
-    @Override
-    public boolean hasDefault() {
-        return true;
-    }
+  @Override
+  public boolean hasDefault() {
+    return true;
+  }
 
-    @Override
-    public String getStaticDataDir() {
-        return "foods";
-    }
+  @Override
+  public String getStaticDataDir() {
+    return "foods";
+  }
 
-    @Override
-    public void onLoaded(String key, FoodConfig data) {
-        FoodConfigManager.INSTANCE.add(key, data);
-    }
+  @Override
+  public void onLoaded(String key, FoodConfig data) {
+    FoodConfigManager.INSTANCE.add(key, data);
+  }
 }

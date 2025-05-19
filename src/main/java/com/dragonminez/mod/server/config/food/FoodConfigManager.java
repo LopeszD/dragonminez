@@ -5,23 +5,23 @@ import com.dragonminez.mod.core.common.manager.ListManager;
 
 public class FoodConfigManager extends ListManager<String, FoodConfig> {
 
-    public static final FoodConfigManager INSTANCE = new FoodConfigManager();
+  public static final FoodConfigManager INSTANCE = new FoodConfigManager();
 
-    private FoodConfigManager() {
-    }
+  private FoodConfigManager() {
+  }
 
-    @Override
-    public String identifier() {
-        return ConfigRegistry.FOOD;
-    }
+  @Override
+  public String identifier() {
+    return ConfigRegistry.FOOD;
+  }
 
-    @Override
-    public boolean uniqueKeys() {
-        return true;
-    }
+  @Override
+  public boolean uniqueKeys() {
+    return true;
+  }
 
-    @Override
-    public LogMode logMode() {
-        return LogMode.LOG_ALL;
-    }
+  @Override
+  public LogMode logMode() {
+    return LogMode.LOG_ALL;
+  }
 }

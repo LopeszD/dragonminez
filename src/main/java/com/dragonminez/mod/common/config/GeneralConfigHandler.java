@@ -6,43 +6,44 @@ import com.dragonminez.mod.core.common.config.model.ConfigType;
 import com.dragonminez.mod.core.common.config.model.IConfigHandler;
 
 public class GeneralConfigHandler implements IConfigHandler<GeneralConfig> {
-    @Override
-    public String identifier() {
-        return ConfigRegistry.GENERAL;
-    }
 
-    @Override
-    public Class<GeneralConfig> getClazz() {
-        return GeneralConfig.class;
-    }
+  @Override
+  public String identifier() {
+    return ConfigRegistry.GENERAL;
+  }
 
-    @Override
-    public int getPriority() {
-        return 0;
-    }
+  @Override
+  public Class<GeneralConfig> getClazz() {
+    return GeneralConfig.class;
+  }
 
-    @Override
-    public ConfigDist getDist() {
-        return ConfigDist.BOTH;
-    }
+  @Override
+  public int getPriority() {
+    return 0;
+  }
 
-    @Override
-    public ConfigType getType() {
-        return ConfigType.RUNTIME;
-    }
+  @Override
+  public ConfigDist getDist() {
+    return ConfigDist.BOTH;
+  }
 
-    @Override
-    public boolean hasDefault() {
-        return true;
-    }
+  @Override
+  public ConfigType getType() {
+    return ConfigType.RUNTIME;
+  }
 
-    @Override
-    public String getStaticDataDir() {
-        return "";
-    }
+  @Override
+  public boolean hasDefault() {
+    return true;
+  }
 
-    @Override
-    public void onLoaded(String key, GeneralConfig data) {
-        GeneralConfig.INSTANCE = data;
-    }
+  @Override
+  public String getStaticDataDir() {
+    return "";
+  }
+
+  @Override
+  public void onLoaded(String key, GeneralConfig data) {
+    GeneralConfig.INSTANCE = data;
+  }
 }

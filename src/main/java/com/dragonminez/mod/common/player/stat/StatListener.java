@@ -10,11 +10,11 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class StatListener {
 
-    @SubscribeEvent
-    public static void onAttachCapabilities(AttachCapabilitiesEvent<Entity> event) {
-        if (!(event.getObject() instanceof Player)) {
-            return;
-        }
-        event.addCapability(Reference.Stat.CAP_ID, StatManager.INSTANCE);
+  @SubscribeEvent
+  public static void onAttachCapabilities(AttachCapabilitiesEvent<Entity> event) {
+    if (!(event.getObject() instanceof Player)) {
+      return;
     }
+    event.addCapability(Reference.Stat.CAP_ID, StatManager.INSTANCE);
+  }
 }

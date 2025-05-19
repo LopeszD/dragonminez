@@ -15,26 +15,23 @@ import software.bernie.geckolib.GeckoLib;
  * </p>
  * <p>
  * <strong>Credits to:</strong><br>
- * Yuseix300 - Founder<br>
- * ezShokkoh - Founder<br>
- * KyoSleep - Tech Lead<br>
- * Bruno - Community Admin<br>
- * And many more amazing contributors and supporters. Refer to README for more info.
+ * Yuseix300 - Founder<br> ezShokkoh - Founder<br> KyoSleep - Tech Lead<br> Bruno - Community
+ * Admin<br> And many more amazing contributors and supporters. Refer to README for more info.
  * </p>
  * <p>
  * <strong>License:</strong><br>
- * This mod is distributed under the GNU General Public License v3.0.
- * Third-party tools like GeckoLib are used under their respective open-source licenses.
+ * This mod is distributed under the GNU General Public License v3.0. Third-party tools like
+ * GeckoLib are used under their respective open-source licenses.
  * </p>
  */
 @Mod(Reference.MOD_ID)
 public class DragonMineZ {
 
-    public DragonMineZ() {
-        ConfigRegistry.init();
-        KeybindRegistry.init();
-        ConfigManager.INSTANCE.init();
-        NetworkManager.INSTANCE.init();
-        GeckoLib.initialize();
-    }
+  public DragonMineZ() {
+    ConfigRegistry.init();
+    KeybindRegistry.init();
+    ConfigManager.INSTANCE.init();
+    NetworkManager.INSTANCE.init();
+    GeckoLib.initialize();
+  }
 }

@@ -16,59 +16,59 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class DebugHud {
 
-    @SubscribeEvent
-    public static void onRenderGameOverlay(RenderGuiOverlayEvent.Pre event) {
-        if (FMLEnvironment.production) {
-            return;
-        }
-        DebugHud.renderDebugInformation(event.getGuiGraphics());
+  @SubscribeEvent
+  public static void onRenderGameOverlay(RenderGuiOverlayEvent.Pre event) {
+    if (FMLEnvironment.production) {
+      return;
+    }
+    DebugHud.renderDebugInformation(event.getGuiGraphics());
+  }
+
+  private static void renderDebugInformation(GuiGraphics graphics) {
+    final Minecraft mc = Minecraft.getInstance();
+    final LocalPlayer player = mc.player;
+    if (player == null || mc.options.hideGui) {
+      return;
     }
 
-    private static void renderDebugInformation(GuiGraphics graphics) {
-        final Minecraft mc = Minecraft.getInstance();
-        final LocalPlayer player = mc.player;
-        if (player == null || mc.options.hideGui) {
-            return;
-        }
+    StatManager.INSTANCE.retrieveStatData(player, statData -> {
+      final Font font = mc.font;
+      final PoseStack pose = graphics.pose();
 
-        StatManager.INSTANCE.retrieveStatData(player, statData -> {
-            final Font font = mc.font;
-            final PoseStack pose = graphics.pose();
+      pose.pushPose();
+      pose.scale(0.8f, 0.8f, 0.8f);
 
-            pose.pushPose();
-            pose.scale(0.8f, 0.8f, 0.8f);
+      int y = 50;
+      int labelX = 10;
+      int tabSpacing = 6;
 
-            int y = 50;
-            int labelX = 10;
-            int tabSpacing = 6;
+      final String[] values = {
+          statData.getRace(),
+          statData.getForm(),
+          String.valueOf(statData.getStrength()),
+          String.valueOf(statData.getStrikePower()),
+          String.valueOf(statData.getEnergy()),
+          String.valueOf(statData.getVitality()),
+          String.valueOf(statData.getResistance()),
+          String.valueOf(statData.getKiPower()),
+          String.valueOf(statData.getAlignment()),
+          String.valueOf(statData.isInCombatMode()),
+          String.valueOf(statData.isBlocking())
+      };
 
-            final String[] values = {
-                    statData.getRace(),
-                    statData.getForm(),
-                    String.valueOf(statData.getStrength()),
-                    String.valueOf(statData.getStrikePower()),
-                    String.valueOf(statData.getEnergy()),
-                    String.valueOf(statData.getVitality()),
-                    String.valueOf(statData.getResistance()),
-                    String.valueOf(statData.getKiPower()),
-                    String.valueOf(statData.getAlignment()),
-                    String.valueOf(statData.isInCombatMode()),
-                    String.valueOf(statData.isBlocking())
-            };
+      int i = 0;
+      for (StatType stat : Reference.Stat.STATS) {
+        final String label = stat.legibleId() + ":";
+        final String value = values[i];
 
-            int i = 0;
-            for (StatType stat : Reference.Stat.STATS) {
-                final String label = stat.legibleId() + ":";
-                final String value = values[i];
+        graphics.drawString(font, label, labelX, y, 0xaaaaaa, true);
+        int labelWidth = font.width(label);
+        graphics.drawString(font, value, labelX + labelWidth + tabSpacing, y, 0xff8800, true);
+        y += 10;
+        i++;
+      }
 
-                graphics.drawString(font, label, labelX, y, 0xaaaaaa, true);
-                int labelWidth = font.width(label);
-                graphics.drawString(font, value, labelX + labelWidth + tabSpacing, y, 0xff8800, true);
-                y += 10;
-                i++;
-            }
-
-            pose.popPose();
-        });
-    }
+      pose.popPose();
+    });
+  }
 }
